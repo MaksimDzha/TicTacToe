@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import Cells from './Cells'
 import newCheck from './Logic/newCheck'
@@ -20,8 +20,9 @@ class BattleTable extends Component{
         this.aiTurn = this.aiTurn.bind(this)
     };
 
-    gameResult = (resultTable, line, message) => {
-        resultTable.forEach((row, indexX) =>
+    gameResult = (table, line, message) => {
+        var resultTable = createTable(this.props.size);
+        table.forEach((row, indexX) =>
             row.forEach((item, indexY) => (
                 resultTable[indexX][indexY] = ["", item]
             ))
@@ -39,8 +40,7 @@ class BattleTable extends Component{
         if ((newCount == size*size)&&(this.state.computerPlay == "X"))
             this.aiTurn(newTable);
         if (newCount >= size*size) {
-            var resultTable = createTable(newTable.length);
-            this.gameResult(resultTable, null, "");
+            this.gameResult(newTable, null, "");
         }
         this.setState({step: tStep});
         this.setState({count: this.state.count + 1});
@@ -98,7 +98,7 @@ const style = StyleSheet.create({
         marginBottom: 5,
         height: 25,
         width: '100%',
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(9),
+        fontSize: 20,
         textAlign: 'center',
         display: 'flex',
         alignItems: 'center',

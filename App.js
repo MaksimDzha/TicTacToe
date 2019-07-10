@@ -1,5 +1,5 @@
 import React from 'react';
-import { PixelRatio, StyleSheet, Text, View, TextInput, Picker } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Picker } from 'react-native';
 import { CheckBox, Button } from 'react-native-elements';
 
 import Game from './src/Game'
@@ -66,7 +66,6 @@ class App extends React.Component {
                 </View>
             )
         }
-
 
         return (
             <View style={style.start}>
@@ -136,14 +135,14 @@ const style = StyleSheet.create({
         margin: 5,
         height: 30,
         width: '100%',
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(10),
+        fontSize: 24,
         textAlign: 'center',
         display: 'flex',
         alignItems: 'center',
         backgroundColor: '#ffcc00',
     },
     customize: {
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(8),
+        fontSize: 18,
     },
     rowStart: {
         margin: 5,

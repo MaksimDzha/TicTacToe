@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PixelRatio, StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 const ResultTable = (table, winner, line) => (
     <View>
@@ -29,7 +29,7 @@ const style = StyleSheet.create({
         margin: 5,
         height: 30,
         width: '100%',
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(10),
+        fontSize: 20,
         textAlign: 'center',
         display: 'flex',
         alignItems: 'center',
@@ -38,7 +38,7 @@ const style = StyleSheet.create({
     icon: {
         margin: 3,
         width: 30,
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(11),
+        fontSize: 22,
         textAlign: 'center',
         display: 'flex',
         backgroundColor: '#FFD700',
@@ -48,7 +48,7 @@ const style = StyleSheet.create({
         margin: 3,
         width: 30,
         fontWeight: 'bold',
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(11),
+        fontSize: 22,
         textAlign: 'center',
         display: 'flex',
         backgroundColor: '#FF0000',

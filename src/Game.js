@@ -1,5 +1,5 @@
 import React from 'react'
-import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import BattleTable from './BattleTable'
@@ -25,7 +25,7 @@ const style = StyleSheet.create({
         margin: 5,
         height: 30,
         width: "100%",
-        fontSize: PixelRatio.getPixelSizeForLayoutSize(10),
+        fontSize: 24,
         textAlign: 'center',
         display: 'flex',
         justifyContent: 'center',
