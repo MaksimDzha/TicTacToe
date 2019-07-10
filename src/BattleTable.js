@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import style from './style.css'
+import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+
 import Cells from './Cells'
 import newCheck from './Logic/newCheck'
 import createTable from './Logic/createTable'
@@ -86,16 +87,36 @@ class BattleTable extends Component{
             this.setState({count: newCount}, function(){this.aiTurn(aiTable)});
         }
         return(
-            <div style={style.column}>
-                <div style={style.playerName}>{
+            <View style={style.column}>
+                <Text style={style.playerName}>{
                     this.state.step === "X" ? 'Ваш ход - X' : 'Ваш ход - O'
                 }
-                </div>
-                <div>{Cells(this.state.table, this.playerTurn)}</div>
-            </div>
+                </Text>
+                <View>{Cells(this.state.table, this.playerTurn)}</View>
+            </View>
         )
     }
 }
 
+const style = StyleSheet.create({
+    playerName: {
+        marginBottom: 5,
+        height: 25,
+        width: '100%',
+        fontSize: PixelRatio.getPixelSizeForLayoutSize(9),
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    column: {
+        margin: 5,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+    }
+});
 
 export default BattleTable;
