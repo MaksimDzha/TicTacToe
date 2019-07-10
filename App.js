@@ -21,31 +21,6 @@ class App extends React.Component {
         this.gameOver = this.gameOver.bind(this);
     }
 
-    onChangeSize = (value) => {
-        const regex = /^[0-9]*$/;
-        if (!regex.test(value)) value = 3;
-        this.setState({size: value})
-    }
-
-    onBlurSize = (value) => {
-        Number(value) < 3 ? value = 3 : (Number(value) > 10 ? value = 10 : true);
-        if (this.state.sizeWin > value) this.state.sizeWin = value;
-        this.setState({size: Number(value)})
-    }
-
-    onChangeSizeWin = (value) => {
-        const regex = /^[0-9]*$/;
-        if (!regex.test(value)) value = 3;
-
-        this.setState({sizeWin: value})
-    }
-
-    onBlurSizeWin = (value) => {
-        const size = this.state.size;
-        Number(value) < 3 ? value = 3 : (Number(value) > size ? value = size : true);
-        this.setState({sizeWin: Number(value)})
-    }
-
     playTheGame = (isIt) => {
         const size = this.state.size;
         const sizeWin = this.state.sizeWin;

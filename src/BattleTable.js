@@ -20,6 +20,18 @@ class BattleTable extends Component{
         this.aiTurn = this.aiTurn.bind(this)
     };
 
+    gameResult = (resultTable, line, message) => {
+        resultTable.forEach((row, indexX) =>
+            row.forEach((item, indexY) => (
+                resultTable[indexX][indexY] = ["", item]
+            ))
+        )
+        if (line != null){
+            line.forEach((item) => {resultTable[item[0]][item[1]][0] = "win"})
+        }
+        this.props.gameOver(true, message, resultTable);
+    }
+
     nextStep = (newTable) => {
         const tStep = this.state.step == "X" ? "O" : "X";
         const size = this.props.size;
@@ -28,12 +40,7 @@ class BattleTable extends Component{
             this.aiTurn(newTable);
         if (newCount >= size*size) {
             var resultTable = createTable(newTable.length);
-            newTable.forEach((row, indexX) =>
-                row.forEach((item, indexY) => (
-                    resultTable[indexX][indexY] = ["", item]
-                ))
-            )
-            this.props.gameOver(true, "", resultTable, null);
+            this.gameResult(resultTable, null, "");
         }
         this.setState({step: tStep});
         this.setState({count: this.state.count + 1});
@@ -45,13 +52,7 @@ class BattleTable extends Component{
         aiHard(newTable, this.props.sizeWin, this.state.computerPlay, 0);
         const line = newCheck(newTable, this.props.sizeWin);
         if (line != null){
-            newTable.forEach((row, indexX) =>
-                row.forEach((item, indexY) => (
-                    newTable[indexX][indexY] = ["", item]
-                ))
-            )
-            line.forEach((item) => {newTable[item[0]][item[1]][0] = "win"})
-            this.props.gameOver(true, "Вы проиграли", newTable);
+            this.gameResult(newTable, line, "Вы проиграли");
         }
         this.setState({table: newTable}, function(){this.nextStep(newTable)});
     }
@@ -64,13 +65,7 @@ class BattleTable extends Component{
             newTable[rowID] = newRow;
             const line = newCheck(newTable, this.props.sizeWin);
             if (line != null){
-                newTable.forEach((row, indexX) =>
-                    row.forEach((item, indexY) => (
-                        newTable[indexX][indexY] = ["", item]
-                    ))
-                )
-                line.forEach((item) => {newTable[item[0]][item[1]][0] = "win"})
-                this.props.gameOver(true, "Вы победили. Поздравляем!", newTable);
+                this.gameResult(newTable, line, "Вы победили. Поздравляем!");
             }
             this.setState({table: newTable}, function(){this.nextStep(newTable)});
         }
